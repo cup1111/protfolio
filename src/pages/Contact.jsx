@@ -30,10 +30,10 @@ const Contact = () => {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
+          name: form.name,
+          to_name: "Zane Wang",
+          email: form.email,
+          to_email: "zanewang0@gmail.com",
           message: form.message,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
