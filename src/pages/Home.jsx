@@ -96,8 +96,9 @@ const Home = () => {
             position={bird.screenPosition}
             scale={bird.screenScale}
             rotation={bird.rotation}
+            isRotating={isRotating}
           />
-          <Sky />
+          <Sky isRotating={isRotating} />
           <Island
             position={island.islandPosition}
             scale={island.islandScale}
@@ -110,6 +111,7 @@ const Home = () => {
             position={plane.screenPosition}
             scale={plane.screenScale}
             rotation={plane.rotation}
+            isRotating={isRotating}
           />
         </Suspense>
       </Canvas>
