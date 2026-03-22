@@ -17,7 +17,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { KEYBOARD_YAW_SPEED } from "../constants";
 import islandScene from "../assets/3d/island.glb";
 
-export default function Island({
+export default function island({
   isRotating,
   setIsRotating,
   setCurrentStage,
@@ -32,7 +32,7 @@ export default function Island({
   const lastX = useRef(0);
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0);
-  /** 方向键是否按下：在 useFrame 里按 delta 连续旋转，避免 keydown 重复间隔导致卡顿 */
+  /** Arrow keys held: apply continuous yaw in useFrame using delta (avoids keydown repeat-interval stutter). */
   const keyLeftDown = useRef(false);
   const keyRightDown = useRef(false);
   // Define a damping factor to control rotation damping
@@ -81,7 +81,7 @@ export default function Island({
     }
   };
 
-  // keydown 只更新按键 ref；旋转与 rotationSpeed 均在 useFrame 中按 delta 计算
+  // keydown only updates key refs; rotation and rotationSpeed are applied in useFrame using delta
   const handleKeyDown = (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();

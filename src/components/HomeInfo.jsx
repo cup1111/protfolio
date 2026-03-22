@@ -8,7 +8,7 @@ const HomeInfo = ({ currentStage }) => {
       <h1 className='sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5'>
         Hi, I'm 
         <p className='font-semibold mx-2 text-white'>Zane</p>
-        A Software Engineer from China 🇨🇳, persuing opportunities in the Australia 🇦🇺
+        A Software Engineer from China 🇨🇳, pursuing opportunities in Australia 🇦🇺
       </h1>
     );
 

@@ -21,10 +21,10 @@ import {
     typescript
 } from "../assets/icons";
 
-/** Home 场景：方向键旋转岛屿/天空的角速度（rad/s，在 useFrame 中与 delta 相乘） */
+/** Home scene: yaw rate for arrow keys to rotate island/sky (rad/s, multiplied by delta in useFrame). */
 export const KEYBOARD_YAW_SPEED = 2.0;
 
-/** 个人联系与社交（Portfolio / About） */
+/** Personal contact and social links (Portfolio / About). */
 export const personal = {
     name: "ZANE WANG",
     displayName: "Zane",
@@ -32,7 +32,7 @@ export const personal = {
     phone: "0421 917 595",
     linkedin: "https://www.linkedin.com/in/zane-wang1",
     github: "https://github.com/cup1111",
-    /** 简短自我介绍（About 页首段） */
+    /** Short intro blurb (first paragraph on About). */
     summary:
         "Full-stack engineer focused on TypeScript, React, and Node.js — from multi-tenant B2B SaaS and payments to AI-assisted tools. Master of IT (AI) at UNSW; I ship tested features with clear product trade-offs.",
 };
@@ -57,11 +57,11 @@ export const certifications = [
 ];
 
 export const awards = [
-    "Honourable Mention, Mathematical Contest in Modelling (2021)",
+    "Honourable Mention, Mathematical Contest in Modeling (2021)",
 ];
 
 /**
- * 技能展示：图标为现有 assets；名称与简历一致
+ * Skill showcase: icons from existing assets; names match resume.
  */
 export const skills = [
     { name: "TypeScript", imageUrl: typescript, type: "Language" },
@@ -107,12 +107,12 @@ export const experiences = [
     },
 ];
 
-/** Projects 页首段文案（与 About 工作经历互不重复） */
+/** Projects page intro copy (distinct from work experience on About). */
 export const projectsIntro =
     "Side projects and independent builds — not the same roles listed under Work Experience on About. Some repos are private; the link opens my GitHub profile — ask if you want stack details.";
 
 /**
- * 精选项目（不含 experiences 中已列的正式工作 / 实习）
+ * Featured projects (excludes formal roles / internships already listed in experiences).
  */
 export const projects = [
     {
