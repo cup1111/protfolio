@@ -2,6 +2,7 @@ import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
+import { Link } from "react-router-dom";
 
 import CTA from "../components/CTA";
 import {
@@ -45,15 +46,29 @@ const About = () => {
 
         <div className='mt-16 flex flex-wrap gap-12'>
           {skills.map((skill) => (
-            <div className='block-container h-20 w-20' key={skill.name}>
-              <div className='btn-back rounded-xl' />
-              <div className='btn-front flex items-center justify-center rounded-xl'>
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className='h-1/2 w-1/2 object-contain'
-                />
+            <div
+              key={skill.name}
+              className='group relative flex flex-col items-center pb-8'
+            >
+              <div
+                className='block-container h-20 w-20'
+                title={skill.name}
+              >
+                <div className='btn-back rounded-xl' />
+                <div className='btn-front flex items-center justify-center rounded-xl'>
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className='h-1/2 w-1/2 object-contain'
+                  />
+                </div>
               </div>
+              <span
+                className='pointer-events-none absolute left-1/2 top-full z-10 mt-2 max-w-[min(16rem,calc(100vw-2rem))] -translate-x-1/2 rounded-md bg-slate-800/95 px-2.5 py-1 text-center font-poppins text-xs font-medium leading-snug text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100'
+                role='tooltip'
+              >
+                {skill.name}
+              </span>
             </div>
           ))}
         </div>
@@ -105,8 +120,12 @@ const About = () => {
         <h3 className='subhead-text'>Work Experience</h3>
         <div className='mt-5 flex flex-col gap-3 text-slate-500'>
           <p>
-            Roles across B2B SaaS, AI tooling, and full-stack product delivery —
-            highlights below.
+            Formal roles and internships only. Other builds (AI Planner, Emoji
+            Twitter, Resume Pack Generator, etc.) live under{" "}
+            <Link className='text-blue-500 hover:underline' to='/projects'>
+              Projects
+            </Link>
+            .
           </p>
         </div>
 

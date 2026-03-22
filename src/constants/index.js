@@ -1,9 +1,9 @@
 import { logo, meta, shopify } from "../assets/images";
 import {
-    car,
     contact,
-    estate,
+    docker,
     express,
+    fastapi,
     git,
     github,
     javascript,
@@ -11,9 +11,10 @@ import {
     mongodb,
     nextjs,
     nodejs,
-    pricewise,
+    prisma,
+    python,
     react,
-    snapgram,
+    redux,
     summiz,
     tailwindcss,
     threads,
@@ -62,29 +63,29 @@ export const awards = [
 export const skills = [
     { name: "TypeScript", imageUrl: typescript, type: "Language" },
     { name: "JavaScript", imageUrl: javascript, type: "Language" },
-    { name: "Python", imageUrl: nodejs, type: "Language" },
+    { name: "Python", imageUrl: python, type: "Language" },
     { name: "React", imageUrl: react, type: "Frontend" },
     { name: "Next.js", imageUrl: nextjs, type: "Frontend" },
     { name: "Node.js", imageUrl: nodejs, type: "Backend" },
     { name: "Express", imageUrl: express, type: "Backend" },
-    { name: "FastAPI", imageUrl: express, type: "Backend" },
-    { name: "tRPC", imageUrl: typescript, type: "API" },
+    { name: "FastAPI", imageUrl: fastapi, type: "Backend" },
+    { name: "tRPC", imageUrl: redux, type: "API" },
     { name: "MongoDB", imageUrl: mongodb, type: "Database" },
-    { name: "MySQL / Prisma", imageUrl: mongodb, type: "Database" },
+    { name: "MySQL / Prisma", imageUrl: prisma, type: "Database" },
     { name: "Tailwind CSS", imageUrl: tailwindcss, type: "Frontend" },
     { name: "OpenAI API", imageUrl: summiz, type: "AI" },
     { name: "Git", imageUrl: git, type: "Tooling" },
     { name: "GitHub", imageUrl: github, type: "Tooling" },
-    { name: "Docker / CI", imageUrl: github, type: "DevOps" },
+    { name: "Docker / CI", imageUrl: docker, type: "DevOps" },
 ];
 
 export const experiences = [
     {
         title: "Full Stack Developer",
-        company_name: "B2B Marketplace Platform",
+        company_name: "MAXM Enterprises Pty Ltd",
         icon: meta,
         iconBg: "#2b77e7",
-        date: "Jan 2024 – Present",
+        date: "Oct 2025 – Mar 2026",
         points: [
             "Built a multi-tenant B2B marketplace (React 19, TypeScript, Vite; Node.js, MongoDB): merchant and customer flows, Stripe Checkout, webhooks, refunds, appointments, and a weighted recommendation engine with pre-computed scores and geo-aware ranking.",
             "Implemented RBAC, superadmin approvals, Google Maps geocoding, S3 uploads, Agenda jobs, email templates, and Jest/supertest coverage with CI/CD gates.",
@@ -101,38 +102,39 @@ export const experiences = [
             "FastAPI + LangChain + OpenAI: RAG chat over a FAISS (or in-memory) vector store and an alternate code-analysis mode; React 18 + TypeScript + Vite client with Markdown-rendered replies and single POST /api/chat integration.",
         ],
     },
+];
+
+/** Projects 页首段文案（与 About 工作经历互不重复） */
+export const projectsIntro =
+    "Side projects and independent builds — not the same roles listed under Work Experience on About. Some repos are private; the link opens my GitHub profile — ask if you want stack details.";
+
+/**
+ * 精选项目（不含 experiences 中已列的正式工作 / 实习）
+ */
+export const projects = [
     {
-        title: "Full Stack Developer",
-        company_name: "AI Planner",
-        icon: summiz,
-        iconBg: "#8b5cf6",
-        date: "Jan 2025 – Oct 2025",
-        points: [
-            "Contributed across Next.js 14 (App Router, Tailwind) and .NET 8 Web APIs with EF Core, MongoDB, JWT, and OpenAI GPT-4 for AI-assisted scheduling and Google Calendar OAuth sync in a three-person team.",
-            "Built calendar UX with drag-and-drop, iterated full-stack features from ideation to demo, and explored Terraform/AWS modules for future cloud deployment.",
-        ],
+        iconUrl: summiz,
+        theme: "btn-back-yellow",
+        name: "AI Planner",
+        description:
+            "AI-assisted planning product: Next.js 14, Tailwind, .NET 8 Web APIs, EF Core, MongoDB, JWT, OpenAI GPT-4, Google Calendar OAuth, calendar UI with drag-and-drop — built in a three-person team.",
+        link: personal.github,
     },
     {
-        title: "Full Stack Developer",
-        company_name: "Emoji Twitter",
-        icon: threads,
-        iconBg: "#0ea5e9",
-        date: "Jul 2025 – Sep 2025",
-        points: [
-            "Delivered Next.js 15 App Router app with tRPC 11, Prisma, MySQL: JWT auth, Zod-validated emoji-only posts, Upstash sliding-window rate limits, and public feeds plus /@username profiles.",
-            "Implemented protected procedures, tRPC React Query invalidation, and Tailwind CSS 4 UI with toasts and optimistic-friendly refresh patterns.",
-            "Designed Prisma schema and indexes; exposed type-safe routers for auth, posts, and profile discovery aligned with T3-style conventions.",
-        ],
+        iconUrl: threads,
+        theme: "btn-back-pink",
+        name: "Emoji Twitter",
+        description:
+            "Next.js 15, tRPC 11, Prisma, MySQL: JWT auth, emoji-only posts with Zod validation, Upstash rate limits, public feeds and /@username profiles, Tailwind CSS 4 — T3-style full-stack TypeScript.",
+        link: personal.github,
     },
     {
-        title: "Full Stack Developer",
-        company_name: "Resume Pack Generator",
-        icon: logo,
-        iconBg: "#6366f1",
-        date: "Oct 2025 – Present",
-        points: [
-            "Node.js/TypeScript Express app plus CLI: seven-step OpenAI pipeline (company research, pain points, JD mapping, bullets, CV summary, cover letter, automated review) with Zod validation, job archive/restore, and shared templates between UI and Commander.",
-        ],
+        iconUrl: logo,
+        theme: "btn-back-black",
+        name: "Resume Pack Generator",
+        description:
+            "Node.js/TypeScript Express workspace + CLI: seven-step OpenAI pipeline (research, pain points, JD mapping, bullets, summary, cover letter, review) with Zod, job archive/restore, and shared templates.",
+        link: personal.github,
     },
 ];
 
@@ -151,56 +153,5 @@ export const socialLinks = [
         name: "LinkedIn",
         iconUrl: linkedin,
         link: personal.linkedin,
-    },
-];
-
-export const projects = [
-    {
-        iconUrl: pricewise,
-        theme: "btn-back-red",
-        name: "Amazon Price Tracker",
-        description:
-            "Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.",
-        link: "https://github.com/adrianhajdin/pricewise",
-    },
-    {
-        iconUrl: threads,
-        theme: "btn-back-green",
-        name: "Full Stack Threads Clone",
-        description:
-            'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: "https://github.com/adrianhajdin/threads",
-    },
-    {
-        iconUrl: car,
-        theme: "btn-back-blue",
-        name: "Car Finding App",
-        description:
-            "Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.",
-        link: "https://github.com/adrianhajdin/project_next13_car_showcase",
-    },
-    {
-        iconUrl: snapgram,
-        theme: "btn-back-pink",
-        name: "Full Stack Instagram Clone",
-        description:
-            "Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.",
-        link: "https://github.com/adrianhajdin/social_media_app",
-    },
-    {
-        iconUrl: estate,
-        theme: "btn-back-black",
-        name: "Real-Estate Application",
-        description:
-            "Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.",
-        link: "https://github.com/adrianhajdin/projects_realestate",
-    },
-    {
-        iconUrl: summiz,
-        theme: "btn-back-yellow",
-        name: "AI Summarizer Application",
-        description:
-            "App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.",
-        link: "https://github.com/adrianhajdin/project_ai_summarizer",
     },
 ];
