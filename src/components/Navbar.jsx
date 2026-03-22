@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const linkClass = ({ isActive }) =>
-  isActive ? 'text-white' : 'text-gray-200';
+  isActive ? 'text-gray-300' : 'text-gray-600';
 
 const Navbar = () => {
   return (
