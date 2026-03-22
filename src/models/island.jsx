@@ -14,6 +14,7 @@ import { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
+import { KEYBOARD_YAW_SPEED } from "../constants";
 import islandScene from "../assets/3d/island.glb";
 
 export default function Island({
@@ -31,6 +32,9 @@ export default function Island({
   const lastX = useRef(0);
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0);
+  /** 方向键是否按下：在 useFrame 里按 delta 连续旋转，避免 keydown 重复间隔导致卡顿 */
+  const keyLeftDown = useRef(false);
+  const keyRightDown = useRef(false);
   // Define a damping factor to control rotation damping
   const dampingFactor = 0.95;
 
@@ -77,24 +81,29 @@ export default function Island({
     }
   };
 
-  // Handle keydown events
+  // keydown 只更新按键 ref；旋转与 rotationSpeed 均在 useFrame 中按 delta 计算
   const handleKeyDown = (event) => {
     if (event.key === "ArrowLeft") {
-      if (!isRotating) setIsRotating(true);
-
-      islandRef.current.rotation.y += 0.005 * Math.PI;
-      rotationSpeed.current = 0.007;
+      event.preventDefault();
+      keyLeftDown.current = true;
+      setIsRotating(true);
     } else if (event.key === "ArrowRight") {
-      if (!isRotating) setIsRotating(true);
-
-      islandRef.current.rotation.y -= 0.005 * Math.PI;
-      rotationSpeed.current = -0.007;
+      event.preventDefault();
+      keyRightDown.current = true;
+      setIsRotating(true);
     }
   };
 
   // Handle keyup events
   const handleKeyUp = (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    if (event.key === "ArrowLeft") {
+      keyLeftDown.current = false;
+    } else if (event.key === "ArrowRight") {
+      keyRightDown.current = false;
+    } else {
+      return;
+    }
+    if (!keyLeftDown.current && !keyRightDown.current) {
       setIsRotating(false);
     }
   };
@@ -155,9 +164,22 @@ export default function Island({
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
   // This function is called on each frame update
-  useFrame(() => {
+  useFrame((_, delta) => {
+    if (!islandRef.current) return;
+
+    const keyDir =
+      (keyLeftDown.current ? 1 : 0) - (keyRightDown.current ? 1 : 0);
+    if (keyDir !== 0) {
+      const step = keyDir * KEYBOARD_YAW_SPEED * delta;
+      islandRef.current.rotation.y += step;
+      rotationSpeed.current = step;
+    }
+
+    const activelyRotating =
+      isRotating || keyLeftDown.current || keyRightDown.current;
+
     // If not rotating, apply damping to slow down the rotation (smoothly)
-    if (!isRotating) {
+    if (!activelyRotating) {
       // Apply damping factor
       rotationSpeed.current *= dampingFactor;
 

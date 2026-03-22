@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 
+import { KEYBOARD_YAW_SPEED } from '../constants'
 import skyScene from '../assets/3d/sky.glb'
 
 export default function Sky({ isRotating, setIsRotating, ...props }) {
@@ -11,6 +12,8 @@ export default function Sky({ isRotating, setIsRotating, ...props }) {
 
   const lastX = useRef(0)
   const rotationSpeed = useRef(0)
+  const keyLeftDown = useRef(false)
+  const keyRightDown = useRef(false)
   const dampingFactor = 0.95
 
   const handlePointerDown = (event) => {
@@ -39,20 +42,26 @@ export default function Sky({ isRotating, setIsRotating, ...props }) {
   }
 
   const handleKeyDown = (event) => {
-    if (!skyRef.current) return
     if (event.key === 'ArrowLeft') {
-      if (!isRotating) setIsRotating(true)
-      skyRef.current.rotation.y += 0.005 * Math.PI
-      rotationSpeed.current = 0.007
+      event.preventDefault()
+      keyLeftDown.current = true
+      setIsRotating(true)
     } else if (event.key === 'ArrowRight') {
-      if (!isRotating) setIsRotating(true)
-      skyRef.current.rotation.y -= 0.005 * Math.PI
-      rotationSpeed.current = -0.007
+      event.preventDefault()
+      keyRightDown.current = true
+      setIsRotating(true)
     }
   }
 
   const handleKeyUp = (event) => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    if (event.key === 'ArrowLeft') {
+      keyLeftDown.current = false
+    } else if (event.key === 'ArrowRight') {
+      keyRightDown.current = false
+    } else {
+      return
+    }
+    if (!keyLeftDown.current && !keyRightDown.current) {
       setIsRotating(false)
     }
   }
@@ -105,9 +114,21 @@ export default function Sky({ isRotating, setIsRotating, ...props }) {
     }
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove])
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (!skyRef.current) return
-    if (!isRotating) {
+
+    const keyDir =
+      (keyLeftDown.current ? 1 : 0) - (keyRightDown.current ? 1 : 0)
+    if (keyDir !== 0) {
+      const step = keyDir * KEYBOARD_YAW_SPEED * delta
+      skyRef.current.rotation.y += step
+      rotationSpeed.current = step
+    }
+
+    const activelyRotating =
+      isRotating || keyLeftDown.current || keyRightDown.current
+
+    if (!activelyRotating) {
       rotationSpeed.current *= dampingFactor
       if (Math.abs(rotationSpeed.current) < 0.001) {
         rotationSpeed.current = 0

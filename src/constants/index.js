@@ -21,6 +21,9 @@ import {
     typescript
 } from "../assets/icons";
 
+/** Home 场景：方向键旋转岛屿/天空的角速度（rad/s，在 useFrame 中与 delta 相乘） */
+export const KEYBOARD_YAW_SPEED = 2.0;
+
 /** 个人联系与社交（Portfolio / About） */
 export const personal = {
     name: "ZANE WANG",
