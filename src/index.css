@@ -89,7 +89,11 @@ body {
   }
 
   .header {
-    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto sticky top-0 z-20 right-0 left-0 bg-white/80 backdrop-blur-md border-b border-gray-200/70;
+    @apply sticky top-0 z-20 w-full bg-white/80 backdrop-blur-md border-b border-gray-200/70;
+  }
+
+  .header-inner {
+    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto;
   }
 
   .footer {
