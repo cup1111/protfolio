@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
   ],
   assetsInclude: ['**/*.glb', '**/*.gltf'],
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
 })
