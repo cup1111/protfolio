@@ -1,20 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 const linkClass = ({ isActive }) =>
-  isActive ? 'text-gray-300' : 'text-gray-600';
+  `nav-link ${isActive ? "nav-link-active" : ""}`;
 
 const Navbar = () => {
   return (
-    <header className='header flex w-full items-center justify-between bg-black-500 px-8 py-5'>
+    <header className='header'>
       <NavLink
         to='/'
-        className='logo flex h-10 w-10 items-center justify-center rounded-lg bg-white font-bold shadow-card'
+        className='flex h-10 w-10 items-center justify-center rounded-lg bg-black-500 font-poppins text-sm font-bold text-white shadow-card transition-transform hover:-translate-y-0.5'
       >
-        <p className='blue-gradient_text'>AH</p>
+        ZW
       </NavLink>
 
-      <nav className='flex gap-7 text-lg font-medium'>
+      <nav className='flex gap-8'>
         <NavLink to='/about' className={linkClass}>
           About
         </NavLink>

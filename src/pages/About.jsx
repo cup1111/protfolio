@@ -16,10 +16,24 @@ import {
 
 import "react-vertical-timeline-component/style.min.css";
 
+/** Single accent color for the whole timeline, regardless of per-item iconBg in constants. */
+const TIMELINE_ACCENT = "#2b77e7";
+
+const skillGroups = skills.reduce((groups, skill) => {
+  const group = groups.find((g) => g.type === skill.type);
+  if (group) {
+    group.items.push(skill);
+  } else {
+    groups.push({ type: skill.type, items: [skill] });
+  }
+  return groups;
+}, []);
+
 const About = () => {
   return (
     <section className='max-container'>
-      <h1 className='head-text'>
+      <p className='eyebrow'>About</p>
+      <h1 className='head-text mt-2'>
         Hello, I&apos;m{" "}
         <span className='blue-gradient_text font-semibold drop-shadow'>
           {personal.displayName}
@@ -28,7 +42,7 @@ const About = () => {
       </h1>
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
-        <p>{personal.summary}</p>
+        <p className='max-w-2xl leading-relaxed'>{personal.summary}</p>
         <p className='text-sm text-slate-400'>
           <a
             className='text-blue-500 hover:underline'
@@ -44,31 +58,29 @@ const About = () => {
       <div className='py-10 flex flex-col'>
         <h3 className='subhead-text'>My Skills</h3>
 
-        <div className='mt-16 flex flex-wrap gap-12'>
-          {skills.map((skill) => (
-            <div
-              key={skill.name}
-              className='group relative flex flex-col items-center pb-8'
-            >
-              <div
-                className='block-container h-20 w-20'
-                title={skill.name}
-              >
-                <div className='btn-back rounded-xl' />
-                <div className='btn-front flex items-center justify-center rounded-xl'>
-                  <img
-                    src={skill.imageUrl}
-                    alt={skill.name}
-                    className='h-1/2 w-1/2 object-contain'
-                  />
-                </div>
+        <div className='mt-8 flex flex-col gap-6'>
+          {skillGroups.map((group) => (
+            <div key={group.type}>
+              <p className='mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400'>
+                {group.type}
+              </p>
+              <div className='flex flex-wrap gap-3'>
+                {group.items.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className='card flex items-center gap-2 rounded-full px-3.5 py-2'
+                  >
+                    <img
+                      src={skill.imageUrl}
+                      alt=''
+                      className='h-4 w-4 object-contain'
+                    />
+                    <span className='text-sm font-medium text-black-500'>
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <span
-                className='pointer-events-none absolute left-1/2 top-full z-10 mt-2 max-w-[min(16rem,calc(100vw-2rem))] -translate-x-1/2 rounded-md bg-slate-800/95 px-2.5 py-1 text-center font-poppins text-xs font-medium leading-snug text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100'
-                role='tooltip'
-              >
-                {skill.name}
-              </span>
             </div>
           ))}
         </div>
@@ -135,7 +147,7 @@ const About = () => {
               <VerticalTimelineElement
                 key={`${experience.company_name}-${experience.date}`}
                 date={experience.date}
-                iconStyle={{ background: experience.iconBg }}
+                iconStyle={{ background: TIMELINE_ACCENT }}
                 icon={
                   <div className='flex h-full w-full items-center justify-center'>
                     <img
@@ -146,10 +158,10 @@ const About = () => {
                   </div>
                 }
                 contentStyle={{
-                  borderBottom: "8px",
+                  borderBottom: "4px",
                   borderStyle: "solid",
-                  borderBottomColor: experience.iconBg,
-                  boxShadow: "none",
+                  borderBottomColor: TIMELINE_ACCENT,
+                  boxShadow: "0px 4px 20px rgba(29, 34, 53, 0.06)",
                 }}
               >
                 <div>

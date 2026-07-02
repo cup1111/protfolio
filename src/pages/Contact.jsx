@@ -76,7 +76,8 @@ const Contact = () => {
       {alert.show && <Alert {...alert} />}
 
       <div className='flex-1 min-w-[50%] flex flex-col'>
-        <h1 className='head-text'>Get in Touch</h1>
+        <p className='eyebrow'>Contact</p>
+        <h1 className='head-text mt-2'>Get in Touch</h1>
 
         <form
           ref={formRef}
