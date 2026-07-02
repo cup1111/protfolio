@@ -78,7 +78,7 @@ const Home = () => {
       >
         <Canvas
           className='w-full h-full bg-transparent'
-          camera={{ position: [0, 0, 3.2], fov: 50, near: 0.1, far: 1000 }}
+          camera={{ near: 0.1, far: 1000 }}
         >
           <Suspense fallback={<Loader />}>
             <directionalLight position={[1, 1, 1]} intensity={2} />
@@ -113,6 +113,8 @@ const Home = () => {
             />
           </Suspense>
         </Canvas>
+
+        <div className='pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent sm:h-32' />
 
         <p className='pointer-events-none absolute bottom-4 right-4 text-xs font-medium text-slate-400'>
           Drag to explore
