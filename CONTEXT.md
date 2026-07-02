@@ -20,6 +20,14 @@ _Avoid_: Hero scene, main visual, centerpiece
 首页最上方的文字优先区块（姓名、职位定位、一句话总结、Contact/Resume 按钮），是 Visitor 获取核心信息的必经路径，不依赖 3D 交互。浮岛场景缩小/退居为其背景或旁侧的点缀。
 _Avoid_: HomeInfo box, intro box
 
+**Projects**:
+站点中展示 Side projects / 独立项目的页面（路由 `/projects`）。导航栏、Hero CTA、页面标题统一使用这个词。
+_Avoid_: Portfolio, Visit my portfolio（曾经的 Hero 按钮文案，与导航栏用词不一致，已废弃）
+
+**Hero CTA Priority**:
+Home Hero 的主按钮固定指向 About（求职场景下，招聘方通常先想了解经历/技能再看项目），次要按钮指向 Projects。Contact 不再放在 Hero，而是通过页面底部与 About/Projects 一致的 CTA 组件承接，避免 Hero 里塞三个并列按钮分散注意力。
+_Avoid_: Let's talk（曾经 Hero 里指向 Contact 的按钮文案，已移除）
+
 **Design Language**:
 整站统一采用现代简约风：大量留白、克制配色（深色正文 + 单一强调色），依赖排版层级和细微动效（而非硬阴影/鲜艳色块）建立质感，类似 Linear / Vercel 官网。现有 neo-brutalism 硬阴影和 `.glassmorphism` 效果逐步替换或弱化。
 _Avoid_: Neo-brutalism, flashy, playful
