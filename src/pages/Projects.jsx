@@ -1,17 +1,22 @@
-import CTA from "../components/CTA";
-import { projects, projectsIntro } from "../constants";
+import PageFooterCTA from "../components/PageFooterCTA";
+import PageHeader from "../components/PageHeader";
+import { projects, projectsIntro } from "../constants/content";
 import { arrow } from "../assets/icons";
 
 const Projects = () => {
   return (
     <section className='max-container'>
-      <p className='eyebrow'>Projects</p>
-      <h1 className='head-text mt-2'>
-        My{" "}
-        <span className='blue-gradient_text font-semibold drop-shadow'>
-          Projects
-        </span>
-      </h1>
+      <PageHeader
+        eyebrow='Projects'
+        title={
+          <>
+            My{" "}
+            <span className='blue-gradient_text font-semibold drop-shadow'>
+              Projects
+            </span>
+          </>
+        }
+      />
 
       <p className='mt-2 max-w-2xl leading-relaxed text-slate-500'>
         {projectsIntro}
@@ -55,9 +60,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <hr className='border-slate-200' />
-
-      <CTA />
+      <PageFooterCTA />
     </section>
   );
 };

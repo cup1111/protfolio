@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import { KEYBOARD_YAW_SPEED } from "../constants";
+import { KEYBOARD_YAW_SPEED } from "../constants/scene";
 
 const DAMPING_FACTOR = 0.95;
 

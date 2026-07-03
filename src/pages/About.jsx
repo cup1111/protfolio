@@ -4,7 +4,8 @@ import {
 } from "react-vertical-timeline-component";
 import { Link } from "react-router-dom";
 
-import CTA from "../components/CTA";
+import PageFooterCTA from "../components/PageFooterCTA";
+import PageHeader from "../components/PageHeader";
 import {
   awards,
   certifications,
@@ -12,7 +13,7 @@ import {
   experiences,
   personal,
   skills,
-} from "../constants";
+} from "../constants/content";
 
 import "react-vertical-timeline-component/style.min.css";
 
@@ -32,14 +33,18 @@ const skillGroups = skills.reduce((groups, skill) => {
 const About = () => {
   return (
     <section className='max-container'>
-      <p className='eyebrow'>About</p>
-      <h1 className='head-text mt-2'>
-        Hello, I&apos;m{" "}
-        <span className='blue-gradient_text font-semibold drop-shadow'>
-          {personal.displayName}
-        </span>{" "}
-        👋
-      </h1>
+      <PageHeader
+        eyebrow='About'
+        title={
+          <>
+            Hello, I&apos;m{" "}
+            <span className='blue-gradient_text font-semibold drop-shadow'>
+              {personal.displayName}
+            </span>{" "}
+            👋
+          </>
+        }
+      />
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
         <p className='max-w-2xl leading-relaxed'>{personal.summary}</p>
@@ -192,9 +197,7 @@ const About = () => {
         </div>
       </div>
 
-      <hr className='border-slate-200' />
-
-      <CTA />
+      <PageFooterCTA />
     </section>
   );
 };

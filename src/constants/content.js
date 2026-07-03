@@ -1,13 +1,11 @@
 import { logo, meta, shopify } from "../assets/images";
 import {
-    contact,
     docker,
     express,
     fastapi,
     git,
     github,
     javascript,
-    linkedin,
     mongodb,
     nextjs,
     nodejs,
@@ -21,10 +19,7 @@ import {
     typescript
 } from "../assets/icons";
 
-/** Home scene: yaw rate for arrow keys to rotate island/sky (rad/s, multiplied by delta in useFrame). */
-export const KEYBOARD_YAW_SPEED = 2.0;
-
-/** Personal contact and social links (Portfolio / About). */
+/** Personal contact info and Hero/About copy. */
 export const personal = {
     name: "ZANE WANG",
     displayName: "Zane",
@@ -32,6 +27,11 @@ export const personal = {
     phone: "0421 917 595",
     linkedin: "https://www.linkedin.com/in/zane-wang1",
     github: "https://github.com/cup1111",
+    /** Home Hero eyebrow: position statement, independent of experiences[]. */
+    roleTitle: "Full Stack Developer",
+    /** Home Hero one-liner (distinct from `summary` — About's longer bio). */
+    heroTagline:
+        "A Software Engineer from China 🇨🇳, pursuing opportunities in Australia 🇦🇺",
     /** Short intro blurb (first paragraph on About). */
     summary:
         "Full-stack engineer focused on TypeScript, React, and Node.js — from multi-tenant B2B SaaS and payments to AI-assisted tools. Master of IT (AI) at UNSW; I ship tested features with clear product trade-offs.",
@@ -117,7 +117,6 @@ export const projectsIntro =
 export const projects = [
     {
         iconUrl: summiz,
-        theme: "btn-back-yellow",
         name: "AI Planner",
         description:
             "AI-assisted planning product: Next.js 14, Tailwind, .NET 8 Web APIs, EF Core, MongoDB, JWT, OpenAI GPT-4, Google Calendar OAuth, calendar UI with drag-and-drop — built in a three-person team.",
@@ -125,7 +124,6 @@ export const projects = [
     },
     {
         iconUrl: threads,
-        theme: "btn-back-pink",
         name: "Emoji Twitter",
         description:
             "Next.js 15, tRPC 11, Prisma, MySQL: JWT auth, emoji-only posts with Zod validation, Upstash rate limits, public feeds and /@username profiles, Tailwind CSS 4 — T3-style full-stack TypeScript.",
@@ -133,28 +131,9 @@ export const projects = [
     },
     {
         iconUrl: logo,
-        theme: "btn-back-black",
         name: "Resume Pack Generator",
         description:
             "Node.js/TypeScript Express workspace + CLI: seven-step OpenAI pipeline (research, pain points, JD mapping, bullets, summary, cover letter, review) with Zod, job archive/restore, and shared templates.",
         link: personal.github,
-    },
-];
-
-export const socialLinks = [
-    {
-        name: "Contact",
-        iconUrl: contact,
-        link: "/contact",
-    },
-    {
-        name: "GitHub",
-        iconUrl: github,
-        link: personal.github,
-    },
-    {
-        name: "LinkedIn",
-        iconUrl: linkedin,
-        link: personal.linkedin,
     },
 ];
