@@ -1,9 +1,10 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import CTA from "../components/CTA";
 import Loader from "../components/Loader";
+import DragYawControl from "../models/DragYawControl";
 import Island from "../models/island";
 import Plane from "../models/Plane";
 import Sky from "../models/Sky";
@@ -11,7 +12,8 @@ import { experiences, personal } from "../constants";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
-  const [, setCurrentStage] = useState(1);
+  const islandRef = useRef();
+  const skyRef = useRef();
 
   const adjustBiplaneForScreenSize = () => {
     let screenScale, screenPosition;
@@ -100,11 +102,13 @@ const Home = () => {
                 intensity={1}
               />
 
-              <Sky isRotating={isRotating} setIsRotating={setIsRotating} />
-              <Island
-                isRotating={isRotating}
+              <DragYawControl
+                targets={[islandRef, skyRef]}
                 setIsRotating={setIsRotating}
-                setCurrentStage={setCurrentStage}
+              />
+              <Sky ref={skyRef} />
+              <Island
+                ref={islandRef}
                 position={islandPosition}
                 rotation={[0.1, 4.7077, 0]}
                 scale={islandScale}
